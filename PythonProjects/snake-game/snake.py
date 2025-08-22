@@ -1,4 +1,3 @@
-import turtle
 from turtle import Turtle
 
 STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
@@ -25,6 +24,13 @@ class Snake:
         new_turtle.penup()
         new_turtle.goto(position)
         self.segment_list.append(new_turtle)
+
+    def reset(self):
+        for seg in self.segment_list:
+            seg.hideturtle()
+        self.segment_list.clear()
+        self.create_snake()
+        self.head = self.segment_list[0]
 
     def extend_segment(self):
         position = self.segment_list[-1].position()
