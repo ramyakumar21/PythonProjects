@@ -15,8 +15,7 @@ guessed_states = []
 
 while len(guessed_states) < 50:
     user_input = str.title(screen.textinput(title=f"{user_score}/50 Guess the state", prompt="What's another state's name? or type Exit"))
-    if user_input == "Exit":
-        break
+
     if user_input in states_list:
         guessed_states.append(user_input)
         state_data = data[data.state == user_input]
@@ -27,13 +26,11 @@ while len(guessed_states) < 50:
         t.write(state_data.state.item())
         user_score += 1
 
-to_guess = []
-for state in states_list:
-    if state not in guessed_states:
-        to_guess.append(state)
-
-to_guess_series = pd.Series(data=to_guess, name="States")
-to_guess_series.to_csv("States to learn.csv")
+    if user_input == "Exit":
+        to_guess = [state_name for state_name in states_list if state_name not in guessed_states ]
+        to_guess_series = pd.Series(data=to_guess, name="States")
+        to_guess_series.to_csv("States to learn.csv")
+        break
 
 
 
