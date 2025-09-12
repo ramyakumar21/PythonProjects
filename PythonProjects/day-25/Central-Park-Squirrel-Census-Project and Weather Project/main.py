@@ -65,10 +65,10 @@ black = colour[data["Primary Fur Color"] == "Black"].count()
 cinnamon = colour[data["Primary Fur Color"] == "Cinnamon"].count()
 gray = colour[data["Primary Fur Color"] == "Gray"].count()
 
-data_dict = {
+to_learn = {
     "Primary Fur Color": ["Black", "Cinnamon", "Gray"],
     "Count" : [black, cinnamon, gray],
 }
 
-data_frame = pd.DataFrame(data_dict)
+data_frame = pd.DataFrame(to_learn)
 data_frame.to_csv("squirrel_data.csv")
